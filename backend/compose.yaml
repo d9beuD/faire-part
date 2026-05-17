@@ -1,10 +1,9 @@
-name: project-name
+name: faire-part-backend
 
 services:
   ###> doctrine/doctrine-bundle ###
   database:
     image: mariadb:12.0.2-ubi10
-    container_name: project-database
     environment:
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD:-root_password}
       - MARIADB_USER=${MARIADB_USER:-app}
@@ -21,7 +20,6 @@ services:
 
   phpmyadmin:
     image: phpmyadmin:5.2.1
-    container_name: project-phpmyadmin
     ports:
       - 8080:80
     environment:
@@ -39,7 +37,6 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    container_name: project-apache
     volumes:
       - .:/var/www/
       - ./docker/apache/apache.conf:/etc/apache2/sites-enabled/000-default.conf
